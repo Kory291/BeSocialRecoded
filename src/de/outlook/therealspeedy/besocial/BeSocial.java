@@ -259,6 +259,7 @@ public class BeSocial extends JavaPlugin {
         config.addDefault("messages.sender.error.rejoinAlreadyMember", "&cSorry, you can't rejoin, because you're already a member!");
         config.addDefault("messages.sender.error.ignoreAlreadyIgnoring", "&cSorry, you're already ignoring that player.");
         config.addDefault("messages.sender.error.ignoreNotIgnoring", "&cYou are currently not ignoring that player.");
+        config.addDefault("messages.sender.error.targetOutOfRange", "&cYour target is out of range. Get closer");
         config.addDefault("messages.sender.success.hug", "&dYou hugged &5%target&d!");
         config.addDefault("messages.sender.success.cuddle", "&dYou cuddled &5%target&d!");
         config.addDefault("messages.sender.success.kiss", "&dYou kissed &5%target&d!");

@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.outlook.therealspeedy</groupId>
+  <artifactId>be-social</artifactId>
+  <version>1</version>
+
+<repositories>
+    <!-- This adds the Spigot Maven repository to the build -->
+    <repository>
+        <id>spigot-repo</id>
+        <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <!--This adds the Spigot API artifact to the build -->
+    <dependency>
+           <groupId>org.spigotmc</groupId>
+           <artifactId>spigot-api</artifactId>
+           <version>1.21.11-R0.1-SNAPSHOT</version>
+           <scope>provided</scope>
+    </dependency>
+</dependencies>
+
+  <build>
+
+  <resources>
+
+    <resource>
+
+        <directory>src/de/outlook/therealspeedy/besocial/resources</directory>
+
+        <includes>
+
+            <include>plugin.yml</include>
+
+        </includes>
+
+        <filtering>true</filtering>
+
+    </resource>
+
+  </resources> 
+
+    <pluginManagement>
+
+      <plugins>
+
+        <plugin>
+
+              <groupId>org.apache.maven.plugins</groupId>
+
+              <artifactId>maven-compiler-plugin</artifactId>
+
+              <version>3.10.1</version>     
+
+              <configuration>
+
+                  <release>17</release>
+
+              </configuration> 
+
+        </plugin>
+
+      </plugins>
+
+    </pluginManagement>
+
+</build>
+
+
+</project>

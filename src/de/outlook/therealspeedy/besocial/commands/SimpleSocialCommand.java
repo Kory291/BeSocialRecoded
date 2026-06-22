@@ -10,6 +10,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.Location;
+import org.bukkit.World.Environment;
 
 public class SimpleSocialCommand implements CommandExecutor {
 
@@ -27,6 +29,7 @@ public class SimpleSocialCommand implements CommandExecutor {
             target is member
             target is not ignoring sender
             sender is not ignoring target
+            target is in range of sender
             >> all passed >> social messages and particles
          */
 
@@ -47,6 +50,7 @@ public class SimpleSocialCommand implements CommandExecutor {
                 }
 
                 Player target = Bukkit.getPlayerExact(args[0]);
+                
                 if (target == null) {
                     sender.sendMessage(Messages.getPrefix() + Messages.getInfoMessage("messages.sender.error.targetOffline"));
                     return false;
@@ -70,6 +74,27 @@ public class SimpleSocialCommand implements CommandExecutor {
                         return true;
                     }
                     else {
+                        // test for range
+                        Location senderLocation = sender.getLocation();
+                        Location targetLocation = target.Location();
+  
+                        World.Environment senderEnvironment = senderLocation.getWorld().getEnvironment();
+                        World.Environment targetEnvironment = targetLocation.getWorld().getEnvironment();
+                        if ( senderEnvironment != targetEnvironment ) {
+                          sender.sendMessage(Messages.getPrefix() + Messages.getInfoMessage("messages.sender.error.targetOutOfRange"));
+                          return true;
+                        }
+                        
+                        float dx = senderLocation.getX() - targetLocation.getX();
+                        float dy = senderLocation.getY() - targetLocation.getY();
+                        float dz = senderLocation.getY() - targetLocation.getZ();
+                        double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2));
+
+                        if ( distance >= maxDistance ) {
+                          sender.sendMessage(Messages.getPrefix() + Message.getInfoMessage("messages.sender.error.targetOutOfRange"));
+                          return true;
+                        }
+
                         sender.sendMessage(Messages.getPrefix() + Messages.getSocialMessage("messages.sender.success."+cmd, (Player) sender, target));
                         target.sendMessage(Messages.getPrefix() + Messages.getSocialMessage("messages.target.success."+cmd, (Player) sender, target));
                         Players.spawnParticles((Player) sender, target, cmd);

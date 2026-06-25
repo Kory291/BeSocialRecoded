@@ -1,3 +1,7 @@
 name: be-social
 version: 1.0.0
 main: de.outlook.therealspeedy.besocial.BeSocial
+
+commands:
+  BeSocial-cuddle:
+    description: Some test commands

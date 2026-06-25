@@ -17,19 +17,19 @@ import de.outlook.therealspeedy.besocial.util.ListStore;
 
 public class BeSocial extends JavaPlugin {
 
-    private FileConfiguration config = this.getConfig();
+    // private FileConfiguration config = this.getConfig();
+    private FileConfiguration config;
     private int initnbr = 0;
     public static ListStore notMembers;
     private String pluginFolder = this.getDataFolder().getAbsolutePath();
     private static File databaseFile;
     private static FileConfiguration database;
-    public static final double currentConfigVersion = 15.1;
+    public static final double currentConfigVersion = 1.21.11;
     public static final String name = "BeSocial";
 
 
     @Override
     public void onEnable() {
-
         initConfig();
 
         initDatabase();
@@ -106,6 +106,7 @@ public class BeSocial extends JavaPlugin {
         config.set("configVersion", currentConfigVersion);
         config.set("enableCommand.besocialLeave", "always true");
         config.set("enableCommand.besocialIgnore", "always true");
+
         saveConfig();
     }
 
@@ -166,12 +167,23 @@ public class BeSocial extends JavaPlugin {
     }
 
     private void initDatabase() {
+        getLogger().log(Level.INFO, "initDatabase start ....");
+        if (!this.getDataFolder.exists()) {
+            getLogger().log(Level.INFO, "Datafolder doesn't exist yet - will create");
+            try {
+                this.getDataFolder().mkdir();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }   
+        }
         databaseFile = new File(getDataFolder(), "database.yml");
         if (!databaseFile.exists()) {
+            getLogger().log(Level.INFO, "Database doesn't exist, will create it");
             databaseFile.getParentFile().mkdirs();
             saveResource("database.yml", false);
         }
 
+        getLogger().log(Level.INFO, "Try to load Database configuration from yaml file");
         database = new YamlConfiguration();
         try {
             database.load(databaseFile);

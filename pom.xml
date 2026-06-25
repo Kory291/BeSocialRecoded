@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.outlook.therealspeedy</groupId>
   <artifactId>be-social</artifactId>
-  <version>1</version>
+  <version>1.21.11</version>
 
 <repositories>
     <!-- This adds the Spigot Maven repository to the build -->
@@ -32,7 +32,7 @@
 
         <includes>
 
-            <include>plugin.yml</include>
+          <include>plugin.yml</include>
 
         </includes>
 

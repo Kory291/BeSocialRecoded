@@ -13,10 +13,19 @@ import static org.bukkit.Bukkit.getServer;
 
 public class BeSocialTabCompleter implements TabCompleter {
 
-	private static FileConfiguration config = getServer().getPluginManager().getPlugin(BeSocial.name).getConfig();
+	private FileConfiguration getConfig() {
+		try {
+			return getServer().getPluginManager().getPlugin(BeSocial.name).getConfig();
+		} catch (NullPointerException e) {
+			return null;
+		}
+	}
 	
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+		FileConfiguration config = getConfig();
+		if (config == null) return null;
+		
 		if (cmd.getName().equalsIgnoreCase("besocial") || cmd.getName().equalsIgnoreCase("beso")) {
 			
 			ArrayList<String> tabComplete = new ArrayList<>();

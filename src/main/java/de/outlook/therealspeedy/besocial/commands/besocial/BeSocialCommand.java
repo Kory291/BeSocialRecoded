@@ -16,11 +16,14 @@ import static org.bukkit.Bukkit.getServer;
 
 public class BeSocialCommand implements CommandExecutor {
 
-	private static FileConfiguration config = getServer().getPluginManager().getPlugin(BeSocial.name).getConfig();
+	private FileConfiguration getConfig() {
+		return getServer().getPluginManager().getPlugin(BeSocial.name).getConfig();
+	}
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
+		FileConfiguration config = getConfig();
 		String senderID = ((Player) sender).getUniqueId().toString();
 		
 		if (Players.notMember((Player) sender) && !sender.hasPermission("besocial.admin") && !config.getBoolean("enableCommand.besocialRejoin")) {

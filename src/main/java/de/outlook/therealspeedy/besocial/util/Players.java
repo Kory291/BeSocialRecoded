@@ -17,8 +17,18 @@ import static de.outlook.therealspeedy.besocial.util.Basic.stringArrayContainsSt
 import static de.outlook.therealspeedy.besocial.util.Database.getIgnored;
 
 public class Players {
-	static Plugin plugin = Bukkit.getPluginManager().getPlugin(BeSocial.name);
-	static FileConfiguration config = plugin.getConfig();
+	
+	private static FileConfiguration getConfig() {
+		Plugin plugin = Bukkit.getPluginManager().getPlugin(BeSocial.name);
+		if (plugin != null) {
+			return plugin.getConfig();
+		}
+		return null;
+	}
+	
+	private static Plugin getPlugin() {
+		return Bukkit.getPluginManager().getPlugin(BeSocial.name);
+	}
 	
 	public static boolean samePlayer(CommandSender sender, Player target) {
 		Player s = (Player) sender;
@@ -45,7 +55,8 @@ public class Players {
 	}
 	
 	public static int commandCooldown() {
-        return plugin.getConfig().getInt("commands.CooldownSeconds");
+        FileConfiguration config = getConfig();
+        return config != null ? config.getInt("commands.CooldownSeconds") : 7;
 	}
 
 	private static Location playerHeartLocation (Player player){
@@ -55,7 +66,10 @@ public class Players {
 	}
 
 	public static void spawnParticles(Player sender, Player target, String command){
-		if (!plugin.getConfig().getBoolean("particles.enableParticleEffect")){
+		FileConfiguration config = getConfig();
+		if (config == null) return;
+		
+		if (!config.getBoolean("particles.enableParticleEffect")){
 			return;
 		}
 
@@ -88,6 +102,9 @@ public class Players {
 	}
 
 	private static Particle particleForCommand(String command){
+		FileConfiguration config = getConfig();
+		if (config == null) return Particle.HEART;
+		
 		String configPath = "particles.usedParticle."+command;
 		return stringToParticle(config.getString(configPath));
 	}
@@ -106,7 +123,10 @@ public class Players {
 			case "angryVillager":
 				return Particle.ANGRY_VILLAGER;
 			default:
-				plugin.getLogger().log(Level.WARNING, "Your config is corrupted. Using default particle 'hearts' for all invalid particle effects.");
+				Plugin plugin = getPlugin();
+				if (plugin != null) {
+					plugin.getLogger().log(Level.WARNING, "Your config is corrupted. Using default particle 'hearts' for all invalid particle effects.");
+				}
 				return Particle.HEART;
 		}
 	}

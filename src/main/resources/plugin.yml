@@ -1,3 +1,38 @@
 name: be-social
 version: 1.0.0
 main: de.outlook.therealspeedy.besocial.BeSocial
+commands:
+  besocial:
+    description: Main BeSocial command
+    usage: /besocial <help|leave|rejoin|ignore|unignore|admin|info>
+    aliases: [beso]
+  hug:
+    description: Hug another player
+    usage: /hug <playername>
+  cuddle:
+    description: Cuddle another player
+    usage: /cuddle <playername>
+  poke:
+    description: Poke another player
+    usage: /poke <playername>
+  kiss:
+    description: Kiss another player
+    usage: /kiss <playername>
+  slap:
+    description: Slap another player
+    usage: /slap <playername>
+  lick:
+    description: Lick another player
+    usage: /lick <playername>
+  pet:
+    description: Pet another player
+    usage: /pet <playername>
+  highfive:
+    description: Give another player a high five
+    usage: /highfive <playername>
+  handshake:
+    description: Give another player a handshake
+    usage: /handshake <playername>
+  sharehealth:
+    description: Share health with another player
+    usage: /sharehealth <playername>

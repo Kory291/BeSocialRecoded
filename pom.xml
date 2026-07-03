@@ -23,7 +23,7 @@
   <build>
     <resources>
       <resource>
-        <directory>src/de/outlook/therealspeedy/besocial/resources</directory>
+        <directory>src/main/resources</directory>
         <includes>
           <include>plugin.yml</include>
           <include>database.yml</include>

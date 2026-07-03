@@ -24,7 +24,7 @@ public class BeSocial extends JavaPlugin {
     private String pluginFolder = this.getDataFolder().getAbsolutePath();
     private static File databaseFile;
     private static FileConfiguration database;
-    public static final double currentConfigVersion = 1.21.11;
+    public static final double currentConfigVersion = 1.6;
     public static final String name = "BeSocial";
 
 

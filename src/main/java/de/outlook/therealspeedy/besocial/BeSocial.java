@@ -30,6 +30,7 @@ public class BeSocial extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        config = this.getConfig();
         initConfig();
 
         initDatabase();
@@ -86,9 +87,6 @@ public class BeSocial extends JavaPlugin {
 
         getLogger().log(Level.INFO, "BeSocial " + this.getDescription().getVersion() + " deactivated.");
     }
-
-
-
 
 
 

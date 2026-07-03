@@ -15,7 +15,7 @@ import org.bukkit.World;
 
 public class SimpleSocialCommand implements CommandExecutor {
 
-    private static final double maxDistance = 50.0; // Maximum interaction distance in blocks
+    private static final double maxDistance = 20.0; // Maximum interaction distance in blocks
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmdRaw, String label, String[] args) {

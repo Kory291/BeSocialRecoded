@@ -84,7 +84,7 @@ public class ShareHealth implements CommandExecutor {
                             sender.sendMessage(Messages.getPrefix() + Messages.getInfoMessage("messages.sender.error.sharehealth.notEnoughHealth"));
                             return true;
                         }
-                        else if (target.getHealth() == target.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
+                        else if (target.getHealth() == target.getAttribute(Attribute.MAX_HEALTH).getValue()) {
                             sender.sendMessage(Messages.getPrefix() + Messages.getInfoMessage("messages.sender.error.sharehealth.targetFullHealth"));
                             return true;
                         }
@@ -98,7 +98,7 @@ public class ShareHealth implements CommandExecutor {
                             double sending;
 
                             shareable = senderHealth / 2.0;
-                            missing = target.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() - targetHealth;
+                            missing = target.getAttribute(Attribute.MAX_HEALTH).getValue() - targetHealth;
 
                             if (shareable > missing) {
                                 sending = missing;

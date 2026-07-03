@@ -100,11 +100,11 @@ public class Players {
 			case "composter":
 				return Particle.COMPOSTER;
 			case "happyVillager":
-				return Particle.VILLAGER_HAPPY;
+				return Particle.HAPPY_VILLAGER;
 			case "fallingWater":
 				return Particle.FALLING_WATER;
 			case "angryVillager":
-				return Particle.VILLAGER_ANGRY;
+				return Particle.ANGRY_VILLAGER;
 			default:
 				plugin.getLogger().log(Level.WARNING, "Your config is corrupted. Using default particle 'hearts' for all invalid particle effects.");
 				return Particle.HEART;

@@ -59,12 +59,12 @@ public class BeSocial extends JavaPlugin {
             getLogger().log(Level.INFO, "" + initnbr + " commands initialized.");
 
         } else {
-            getLogger().log(Level.WARNING, "Plugin deactivated via config file. Stopping plugin. Please remove the BeSocial jar file from the plugins folder, if you don't want to use this plugin anymore!");
+            getLogger().log(Level.WARNING, "Plugin deactivated via config file. Stopping plugin. Please remove the BeSocial jar file from the plugins folder, if you don't want to use this plugin a[...]");
             getServer().getPluginManager().disablePlugin(this);
         }
 
         if (config.getBoolean("messages.console.askforhelp")) {
-            getLogger().log(Level.INFO, "[BeSocial] §aHey! If you like this plugin please help me out. Leave a rating and comment at spigot.mc, take screenshots that I can use for the plugin page and recommend it to other server owners. (You can deactivate this message in the config file.)");
+            getLogger().log(Level.INFO, "[BeSocial] §aHey! If you like this plugin please help me out. Leave a rating and comment at spigot.mc, take screenshots that I can use for the plugin page[...]");
         }
 
         getLogger().log(Level.INFO, "Plugin ready for use.");
@@ -168,7 +168,7 @@ public class BeSocial extends JavaPlugin {
 
     private void initDatabase() {
         getLogger().log(Level.INFO, "initDatabase start ....");
-        if (!this.getDataFolder.exists()) {
+        if (!this.getDataFolder().exists()) {
             getLogger().log(Level.INFO, "Datafolder doesn't exist yet - will create");
             try {
                 this.getDataFolder().mkdir();

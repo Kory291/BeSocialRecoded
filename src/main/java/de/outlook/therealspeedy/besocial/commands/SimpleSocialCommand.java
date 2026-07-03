@@ -11,9 +11,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
-import org.bukkit.World.Environment;
+import org.bukkit.World;
 
 public class SimpleSocialCommand implements CommandExecutor {
+
+    private static final double maxDistance = 50.0; // Maximum interaction distance in blocks
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmdRaw, String label, String[] args) {
@@ -75,23 +77,26 @@ public class SimpleSocialCommand implements CommandExecutor {
                     }
                     else {
                         // test for range
-                        Location senderLocation = sender.getLocation();
-                        Location targetLocation = target.Location();
-  
-                        World.Environment senderEnvironment = senderLocation.getWorld().getEnvironment();
-                        World.Environment targetEnvironment = targetLocation.getWorld().getEnvironment();
-                        if ( senderEnvironment != targetEnvironment ) {
+                        Player senderPlayer = (Player) sender;
+                        Location senderLocation = senderPlayer.getLocation();
+                        Location targetLocation = target.getLocation();
+   
+                        World senderWorld = senderLocation.getWorld();
+                        World targetWorld = targetLocation.getWorld();
+                        
+                        // Check if players are in different worlds
+                        if (!senderWorld.equals(targetWorld)) {
                           sender.sendMessage(Messages.getPrefix() + Messages.getInfoMessage("messages.sender.error.targetOutOfRange"));
                           return true;
                         }
                         
-                        float dx = senderLocation.getX() - targetLocation.getX();
-                        float dy = senderLocation.getY() - targetLocation.getY();
-                        float dz = senderLocation.getY() - targetLocation.getZ();
+                        double dx = senderLocation.getX() - targetLocation.getX();
+                        double dy = senderLocation.getY() - targetLocation.getY();
+                        double dz = senderLocation.getZ() - targetLocation.getZ();
                         double distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2));
 
-                        if ( distance >= maxDistance ) {
-                          sender.sendMessage(Messages.getPrefix() + Message.getInfoMessage("messages.sender.error.targetOutOfRange"));
+                        if (distance >= maxDistance) {
+                          sender.sendMessage(Messages.getPrefix() + Messages.getInfoMessage("messages.sender.error.targetOutOfRange"));
                           return true;
                         }
 
